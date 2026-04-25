@@ -29,21 +29,23 @@ blank_board = {
 
 def read_board(filename):
     '''Read the previously existing board from the file if it exists.'''
-    # Put file reading code here.
     try:
-        print('in the try')
         with open (filename, 'rt') as filehandle:
             game_data = json.load(filehandle)
 
             return game_data
 
     except (FileExistsError, FileNotFoundError):
-        print('out the try')
         return blank_board['board']
 
 def save_board(filename, board):
     '''Save the current game to a file.'''
-    # Put file writing code here.
+    try:
+        with open (filename, 'wt') as filehandle:
+            json.dump(board, filehandle)
+
+    except (FileNotFoundError):
+        ('Error encountered with the file.')
 
 def display_board(board):
     '''Display a Tic-Tac-Toe board on the screen in a user-friendly way.'''
@@ -101,7 +103,8 @@ def game_done(board, message=False):
     return False
 
 def main():
-    read_board('filename.json')
+    read_board('tictactoe.json')
+    save_board('tictactoe.json', blank_board)
 
 # These user-instructions are provided and do not need to be changed.
 print("Enter 'q' to suspend your game. Otherwise, enter a number from 1 to 9")
