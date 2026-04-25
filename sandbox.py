@@ -25,3 +25,7 @@ def years_old():
     print(f'You will turn {years_old}')
 
 years_old()
+
+test = "xxx"
+
+print(test.count("x"))

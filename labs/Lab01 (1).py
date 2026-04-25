@@ -60,8 +60,15 @@ def display_board(board):
 
 def is_x_turn(board):
     '''Determine whose turn it is.'''
-    # Put code here determining if it is X's turn.
-    return True
+    cells = board["board"]
+
+    x_count = cells.count("X")
+    o_count = cells.count("O")
+
+    if x_count == o_count:
+        return True
+    else:
+        return False
 
 def play_game(board):
     '''Play the game of Tic-Tac-Toe.'''
