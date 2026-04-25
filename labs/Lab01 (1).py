@@ -49,7 +49,14 @@ def save_board(filename, board):
 
 def display_board(board):
     '''Display a Tic-Tac-Toe board on the screen in a user-friendly way.'''
-    # Put display code here.
+
+    cells = board["board"]
+
+    print(f" {cells[0]} | {cells[1]} | {cells[2]} ")
+    print("---+---+---")
+    print(f" {cells[3]} | {cells[4]} | {cells[5]} ")
+    print("---+---+---")
+    print(f" {cells[6]} | {cells[7]} | {cells[8]} \n")
 
 def is_x_turn(board):
     '''Determine whose turn it is.'''
@@ -105,6 +112,7 @@ def game_done(board, message=False):
 def main():
     read_board('tictactoe.json')
     save_board('tictactoe.json', blank_board)
+    display_board(blank_board)
 
 # These user-instructions are provided and do not need to be changed.
 print("Enter 'q' to suspend your game. Otherwise, enter a number from 1 to 9")
