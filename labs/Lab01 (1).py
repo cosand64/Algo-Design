@@ -72,7 +72,15 @@ def is_x_turn(board):
 
 def play_game(board):
     '''Play the game of Tic-Tac-Toe.'''
-    # Put game play code here. Return False when the user has indicated they are done.
+    if is_x_turn:
+        current_player = X
+    else:
+        current_player = O
+
+    while True:
+        choice = input(f'{current_player}> ')
+        
+
     return False
 
 def game_done(board, message=False):
