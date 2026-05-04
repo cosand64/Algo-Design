@@ -77,9 +77,9 @@ def play_game(board):
     else:
         current_player = O
 
-    while True:
-        choice = input(f'{current_player}> ')
-        
+    # while True:
+    #     choice = input(f'{current_player}> ')
+
 
     return False
 

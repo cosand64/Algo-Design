@@ -16,16 +16,30 @@
 #     gender = get_gender()
 #     prefix = get_prefix(gender)
 
-import datetime
-year = 2026
+#####################################################################
 
-def years_old():
-    date_of_birth = int(input('When were you born? (yyyy) '))
-    years_old = year - date_of_birth
-    print(f'You will turn {years_old}')
+# import datetime
+# year = 2026
 
-years_old()
+# def years_old():
+#     date_of_birth = int(input('When were you born? (yyyy) '))
+#     years_old = year - date_of_birth
+#     print(f'You will turn {years_old}')
 
-test = "xxx"
+# years_old()
 
-print(test.count("x"))
+# test = "xxx"
+
+# print(test.count("x"))
+
+#########################################################################
+
+password = "drowssap"
+secret = "Silly Goose"
+
+user_password = input("what is the password? ")
+
+if password == user_password:
+    print(secret)
+else:
+    print("dummy")
