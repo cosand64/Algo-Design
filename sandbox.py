@@ -40,6 +40,7 @@ secret = "Silly Goose"
 user_password = input("what is the password? ")
 
 if password == user_password:
-    print(secret)
+    for i in range(100):
+        print(secret)
 else:
     print("dummy")
