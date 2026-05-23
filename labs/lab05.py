@@ -1,13 +1,16 @@
 # 1. Name:
-#      -your name-
+#      Connor Sanderson
 # 2. Assignment Name:
 #      Lab 05 : Sudoku Draft
 # 3. Assignment Description:
-#      -describe what this program is meant to do-
+#      This is meant to be a program for the game of sudoku. However in this draft there will be no
+#      enforcement of the rules. 
 # 4. What was the hardest part? Be as specific as possible.
-#      -a paragraph or two about how the assignment went for you-
+#      For me the hardest part was the validate move function and trying 
+#      to figure out that logic. I think I got it figured out but I am also glad that I don't need 
+#      it to be enforced until next week.
 # 5. How long did it take for you to complete the assignment?
-#      -total time in hours including reading the assignment and submitting the program-
+#      3hrs
 import json
 
 def load_board(filename):
@@ -48,7 +51,7 @@ def save_board(filename, board):
     print(f"Board successfully saved to {filename}")
 
 def get_user_input():
-    """Prompts the user for a coordinate."""
+    """ Prompts the user for a coordinate. """
     return input("Specify a coordinate to edit or 'Q' to save and quit\n> ")
 
 def parse_coordinates(coordinate_string):
@@ -142,7 +145,7 @@ def play_game(board):
         board[row][col] = val
 
 def main():
-    filename = input("Enter the filename of the Sudoku board (e.g., 131.05.Easy.json): ")
+    filename = input("Enter the filename of the Sudoku: ")
     board = load_board(filename)
     
     if board is not None:
