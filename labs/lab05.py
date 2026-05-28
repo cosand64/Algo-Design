@@ -1,16 +1,13 @@
 # 1. Name:
-#      Connor Sanderson
+#      Connor sanderson
 # 2. Assignment Name:
-#      Lab 05 : Sudoku Draft
+#      Lab 06 : Sudoku Program
 # 3. Assignment Description:
-#      This is meant to be a program for the game of sudoku. However in this draft there will be no
-#      enforcement of the rules. 
+#      -describe what this program is meant to do-
 # 4. What was the hardest part? Be as specific as possible.
-#      For me the hardest part was the validate move function and trying 
-#      to figure out that logic. I think I got it figured out but I am also glad that I don't need 
-#      it to be enforced until next week.
+#      -a paragraph or two about how the assignment went for you-
 # 5. How long did it take for you to complete the assignment?
-#      3hrs
+#      -total time in hours including reading the assignment and submitting the program-
 import json
 
 def load_board(filename):
@@ -71,7 +68,8 @@ def parse_coordinates(coordinate_string):
     row_number = coordinate[1]
     
     if not ('A' <= column_character <= 'I') or not ('1' <= row_number <= '9'):
-        return False
+        column_character = coordinate[1]
+        row_number = coordinate[0]
         
     column = ord(column_character) - ord('A')
     row = int(row_number) - 1
