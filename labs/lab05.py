@@ -3,11 +3,12 @@
 # 2. Assignment Name:
 #      Lab 06 : Sudoku Program
 # 3. Assignment Description:
-#      -describe what this program is meant to do-
+#      This program is meant to be the sudoku game. This time however it will actually implement 
+#      the rules and keep the user from making illegal decisions.
 # 4. What was the hardest part? Be as specific as possible.
-#      -a paragraph or two about how the assignment went for you-
+#      The assignment went very well. I think the hardest was enforcing the rules without breaking the program.
 # 5. How long did it take for you to complete the assignment?
-#      -total time in hours including reading the assignment and submitting the program-
+#     1hr 30min
 import json
 
 def load_board(filename):
@@ -26,7 +27,7 @@ def display_board(board):
     print("   A B C   D E F   G H I")
     for i in range(9):
         if i == 3 or i == 6:
-            print("   -----+-----+-----")
+            print("    -----+-------+-----")
         row_number = f"{i + 1}  "
         
         for j in range(9):
