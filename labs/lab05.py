@@ -70,6 +70,9 @@ def parse_coordinates(coordinate_string):
     if not ('A' <= column_character <= 'I') or not ('1' <= row_number <= '9'):
         column_character = coordinate[1]
         row_number = coordinate[0]
+
+        if not ('A' <= column_character <= 'I') or not ('1' <= row_number <= '9'):
+            return False
         
     column = ord(column_character) - ord('A')
     row = int(row_number) - 1
@@ -84,16 +87,19 @@ def validate_move(board, row, col, value):
     """ Checks if a move is valid """
     # Check if the target cell is filled
     if is_square_filled(board, row, col):
+        print("This square is already filled! Pick another one.")
         return False
 
     # Check the row
     for col in range(9):
         if board[row][col] == value:
+            print("This number already exists in the row. Please pick a different one.")
             return False
 
     # Check the column
     for r in range(9):
         if board[r][col] == value:
+            print("This number already exists in the column. Please pick a different one.")
             return False
 
     # Check the 3x3
@@ -103,6 +109,7 @@ def validate_move(board, row, col, value):
     for r in range(box_start_row, box_start_row + 3):
         for col in range(box_start_col, box_start_col + 3):
             if board[r][col] == value:
+                print("This number already exists in the square. Please pick a different one.")
                 return False
 
     # If all checks passed
@@ -138,7 +145,7 @@ def play_game(board):
         is_legal = validate_move(board, row, col, val)
         
         if not is_legal:
-            print("This move is not valid.")
+            continue
         
         board[row][col] = val
 
