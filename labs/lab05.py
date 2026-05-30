@@ -23,7 +23,7 @@ def load_board(filename):
     
 def display_board(board):
     """ Displays the current board """
-    print("   A B C D E F G H I")
+    print("   A B C   D E F   G H I")
     for i in range(9):
         if i == 3 or i == 6:
             print("   -----+-----+-----")
@@ -32,14 +32,14 @@ def display_board(board):
         for j in range(9):
             value = board[i][j]
             value_string = str(value) if value != 0 else ' '
-            row_number += value_string
+            row_number += value_string + ' '
 
             if j == 2 or j == 5:
-                row_number += '|'
+                row_number += '| '
             elif j == 8:
                 row_number += ' '
 
-        print(row_number)
+        print(row_number.rstrip())
 
 def save_board(filename, board):
     """ Saves the current board """
@@ -91,8 +91,8 @@ def validate_move(board, row, col, value):
         return False
 
     # Check the row
-    for col in range(9):
-        if board[row][col] == value:
+    for c in range(9):
+        if board[row][c] == value:
             print("This number already exists in the row. Please pick a different one.")
             return False
 
@@ -107,9 +107,9 @@ def validate_move(board, row, col, value):
     box_start_col = (col // 3) * 3
 
     for r in range(box_start_row, box_start_row + 3):
-        for col in range(box_start_col, box_start_col + 3):
-            if board[r][col] == value:
-                print("This number already exists in the square. Please pick a different one.")
+        for c in range(box_start_col, box_start_col + 3):
+            if board[r][c] == value:
+                print("This number already exists in the 3x3 square. Please pick a different one.")
                 return False
 
     # If all checks passed
