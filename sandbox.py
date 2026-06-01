@@ -34,13 +34,25 @@
 
 #########################################################################
 
-password = "drowssap"
-secret = "Silly Goose"
+# password = "drowssap"
+# secret = "Silly Goose"
 
-user_password = input("what is the password? ")
+# user_password = input("what is the password? ")
 
-if password == user_password:
-    for i in range(100):
-        print(secret)
-else:
-    print("dummy")
+# if password == user_password:
+#     for i in range(100):
+#         print(secret)
+# else:
+#     print("dummy")
+
+
+def test_function(x , y):
+    if x == 0:
+        return 1
+    else:
+        return y + test_function(x - 1, y)
+    
+x = 2
+y = 5
+
+print(test_function(x, y))
