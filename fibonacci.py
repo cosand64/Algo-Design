@@ -11,10 +11,16 @@ def fibonacci_loop(n):
     return fibonacci
 
 def recursive_fibonacci(n):
-    pass
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return recursive_fibonacci(n-1) + recursive_fibonacci(n-2)
 
 def main():
     n = 100
     print(fibonacci_loop(n))
+    print(recursive_fibonacci(n))
 
 main()
