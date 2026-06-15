@@ -2,7 +2,17 @@
 
 def get_number():
     """Obtain a positive integer from the user"""
-    return 123
+    
+    while True:
+        try:
+            integer = int(input("Please enter a positive integer. "))
+            if integer > 0:
+                return integer
+            else:
+                print("Please try again. ")
+        except ValueError:
+            print("Must input a number.")
+    
 
 def convert_to_binary(number):
     """Recieves a number in decimal and converts it to a binary string"""
@@ -48,7 +58,7 @@ def test_running():
 def main():
     """run the program"""
     number = get_number()
-    binary, octal, hex = convert(number)
-    display(number, binary, octal, hex)
+    print(number)
+  
 
 main()
