@@ -16,7 +16,15 @@ def get_number():
 
 def convert_to_binary(number):
     """Recieves a number in decimal and converts it to a binary string"""
-    return "0b11011"
+    binary_digits = []
+    while number > 0:
+        binary_digits.append(number % 2)
+        number = number // 2
+    
+    binary_string = ""
+    for i in range(len(binary_digits)):
+        binary_string = binary_string + str(binary_digits[i])
+    return binary_string
 
 def convert_to_octal(number):
     """Recieves a number in decimal and converts it to a octal string"""
@@ -58,7 +66,9 @@ def test_running():
 def main():
     """run the program"""
     number = get_number()
+    binary_number = convert_to_binary(number)
     print(number)
+    print(binary_number)
   
 
 main()
