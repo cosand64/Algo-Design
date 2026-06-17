@@ -40,6 +40,19 @@ def convert_to_octal(number):
 
 def convert_to_hex(number):
     """Recieves a number in decimal and converts it to a hex string"""
+
+    if number == 0:
+        return 0
+
+        hex_digits = []
+
+        while number > 0:
+            hex_digits.append(number % 16)
+            number //= 16
+
+        hex_lookup = '0123456789abcdef'
+        
+
     return "0bEF"
 
 def convert(number):
