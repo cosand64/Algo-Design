@@ -22,13 +22,21 @@ def convert_to_binary(number):
         number = number // 2
     
     binary_string = ""
-    for i in range(len(binary_digits)):
+    for i in range(len(binary_digits)-1, -1, -1):
         binary_string = binary_string + str(binary_digits[i])
     return binary_string
 
 def convert_to_octal(number):
     """Recieves a number in decimal and converts it to a octal string"""
-    return "0o357"
+    octal_digits = []
+    while number > 0:
+        octal_digits.append(number % 8)
+        number = number // 8
+    
+    octal_string = ""
+    for i in range(len(octal_digits)-1, -1, -1):
+        octal_string = octal_string + str(octal_digits[i])
+    return octal_string
 
 def convert_to_hex(number):
     """Recieves a number in decimal and converts it to a hex string"""
@@ -48,11 +56,27 @@ def display(number, binary, octal, hex):
 
 def test_binary():
     """run tests to ensure convert_to_binary() is working"""
-    pass 
+    
+    assert convert_to_binary(1) == '1'
+    assert convert_to_binary(10) == '1010'
+    assert convert_to_binary(13) == '1101'
+    assert convert_to_binary(14) == '1110'
+    assert convert_to_binary(15) == '1111'
+    assert convert_to_binary(16) == '10000'
+    assert convert_to_binary(255) == '11111111'
+    assert convert_to_binary(256) == '100000000'
+    
+    print('all binary tests passed')
 
 def test_octal():
     """run tests to ensure convert_to_octal() is working"""
-    pass 
+    assert convert_to_octal(1) == '1' 
+    assert convert_to_octal(10) == '12' 
+    assert convert_to_octal(11) == '13' 
+    assert convert_to_octal(12) == '14' 
+    assert convert_to_octal(800) == '1440'
+
+    print('all octal tests have passed') 
 
 def test_hex():
     """run tests to ensure convert_to_hex() is working"""
@@ -65,10 +89,17 @@ def test_running():
 
 def main():
     """run the program"""
+    test_binary()
+    test_octal()
+
     number = get_number()
+
     binary_number = convert_to_binary(number)
+    octal_number = convert_to_octal(number)
+
     print(number)
     print(binary_number)
+    print(octal_number)
   
 
 main()
