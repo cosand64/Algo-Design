@@ -68,7 +68,7 @@ def test_segergation_test_cases():
         "Single Element"
     ]
     
-    # Testing loop
+    # Testing
     for index in range(len(test_inputs)):
         current_array = test_inputs[index].copy()
         expected_array = expected_outputs[index]
@@ -79,7 +79,7 @@ def test_segergation_test_cases():
             high_index = len(current_array) - 1
             segregation_sort(current_array, 0, high_index)
             
-        # Results evaluation and output
+        # Results
         if current_array == expected_array:
             print(f"Test: {current_test_name:<16} | Status: PASS")
         else:
