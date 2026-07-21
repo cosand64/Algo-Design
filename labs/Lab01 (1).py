@@ -32,24 +32,25 @@ def read_board(filename):
     try:
         with open (filename, 'rt') as filehandle:
             game_data = json.load(filehandle)
-
             return game_data
-
-    except (FileExistsError, FileNotFoundError):
-        return blank_board['board']
+    except (FileExistsError, FileNotFoundError, json.decoder.JSONDecodeError):
+        return {
+            "board": [
+                BLANK, BLANK, BLANK,
+                BLANK, BLANK, BLANK,
+                BLANK, BLANK, BLANK ]
+        }
 
 def save_board(filename, board):
     '''Save the current game to a file.'''
     try:
         with open (filename, 'wt') as filehandle:
             json.dump(board, filehandle)
-
     except (FileNotFoundError):
-        ('Error encountered with the file.')
+        print('Error encountered with the file.')
 
 def display_board(board):
     '''Display a Tic-Tac-Toe board on the screen in a user-friendly way.'''
-
     cells = board["board"]
 
     print(f" {cells[0]} | {cells[1]} | {cells[2]} ")
@@ -72,16 +73,40 @@ def is_x_turn(board):
 
 def play_game(board):
     '''Play the game of Tic-Tac-Toe.'''
-    if is_x_turn:
-        current_player = X
-    else:
-        current_player = O
+    
+    # Continue playing as long as the game isn't finished
+    while not game_done(board["board"]):
+        
+        if is_x_turn(board):
+            current_player = X
+        else:
+            current_player = O
 
-    # while True:
-    #     choice = input(f'{current_player}> ')
+        choice = input(f'{current_player}> ')
 
+        if choice.lower() == 'q':
+            return False
 
-    return False
+        # grid selection
+        try:
+            move = int(choice)
+            if 1 <= move <= 9:
+                index = move - 1
+                if board["board"][index] == BLANK:
+                    board["board"][index] = current_player
+                    display_board(board)
+                    
+                    # Check if game over
+                    if game_done(board["board"], message=True):
+                        return True
+                else:
+                    print("That square is already taken. Try again.")
+            else:
+                print("Please enter a valid number between 1 and 9.")
+        except ValueError:
+            print("Invalid input. Please enter a number from 1 to 9, or 'q' to quit.")
+
+    return True
 
 def game_done(board, message=False):
     '''Determine if the game is finished.
@@ -121,13 +146,30 @@ def game_done(board, message=False):
             print("The game is a tie!")
         return True
 
-
     return False
 
 def main():
-    read_board('tictactoe.json')
-    save_board('tictactoe.json', blank_board)
-    display_board(blank_board)
+    # Load the board
+    board = read_board('tictactoe.json')
+    
+    if game_done(board["board"]):
+        board = {
+            "board": [
+                BLANK, BLANK, BLANK,
+                BLANK, BLANK, BLANK,
+                BLANK, BLANK, BLANK ]
+        }
+
+    display_board(board)
+    
+    is_finished = play_game(board)
+    
+    # Save the board state
+    if is_finished:
+        save_board('tictactoe.json', blank_board)
+    else:
+        save_board('tictactoe.json', board)
+
 
 # These user-instructions are provided and do not need to be changed.
 print("Enter 'q' to suspend your game. Otherwise, enter a number from 1 to 9")
@@ -140,5 +182,4 @@ print(" 7 | 8 | 9 \n")
 print("The current board is:")
 
 # The file read code, game loop code, and file close code goes here.
-
 main()
